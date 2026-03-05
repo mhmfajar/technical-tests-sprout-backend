@@ -7,12 +7,12 @@ import apiRouter from "~/presentation/routes";
 const app = express();
 app.use(express.json());
 
-app.use(apiRouter);
-app.use(errorHandlerMiddleware);
-
 app.get("/", (_, res) => {
 	res.json({ message: "Welcome!" });
 });
+
+app.use(apiRouter);
+app.use(errorHandlerMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
