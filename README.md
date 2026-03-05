@@ -159,6 +159,56 @@ Authorization: Bearer <your-token>
 pnpm test
 ```
 
+## ☁️ Deploy to Vercel
+
+### Prerequisites
+
+- Vercel account
+- MySQL database (you can use MySQL on Vercel, Railway, or any MySQL provider)
+
+### 1. Prepare Environment Variables
+
+Go to Vercel Dashboard > Your Project > Settings > Environment Variables and add these variables:
+
+```env
+DATABASE_URL=mysql://user:password@host:3306/dbname
+PORT=3000
+NODE_ENV=production
+JWT_SECRET=your-secure-random-secret
+JWT_EXPIRES_IN=1d
+```
+
+For DATABASE_URL, you can use:
+
+- **Vercel MySQL** (recommended): Get connection string from Vercel Storage
+- **Railway MySQL**: Get from Railway dashboard
+- **PlanetScale**: Get from PlanetScale dashboard (use SSL option)
+
+### 2. Deploy via Vercel CLI
+
+```bash
+# Install Vercel CLI globally
+pnpm add -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy
+vercel
+```
+
+Or connect your GitHub repository to Vercel for automatic deployments.
+
+### 3. Build Command
+
+Vercel will automatically run `pnpm vercel-build` which executes `pnpm build` to compile TypeScript to JavaScript.
+
+### 4. Important Notes
+
+- This project uses MySQL (not PostgreSQL)
+- Make sure your database allows external connections
+- For production, consider using a connection pool or serverless-compatible database
+
 ## 📄 License
 
 MIT

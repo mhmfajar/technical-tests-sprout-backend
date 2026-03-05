@@ -15,9 +15,18 @@ app.get("/", (_, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
-});
+
+// Vercel serverless function handler
+export default function handler(req: express.Request, res: express.Response) {
+	app(req, res);
+}
+
+// For local development only
+if (process.env.NODE_ENV !== "production") {
+	app.listen(PORT, () => {
+		console.log(`Server is running on port ${PORT}`);
+	});
+}
 
 process.on("unhandledRejection", (reason, promise) => {
 	console.error("Unhandled Rejection at:", promise, "reason:", reason);
