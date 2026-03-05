@@ -1,13 +1,13 @@
 {
-	"builds": [
-		{
-			"src": "dist/server.js",
-			"use": "@vercel/node"
+	"buildCommand": "pnpm build",
+	"functions": {
+		"src/server.ts": {
+			"runtime": "@vercel/node"
 		}
-	],
+	},
 	"routes": [
 		{
-			"dest": "/dist/server.js",
+			"dest": "src/server.ts",
 			"src": "/(.*)"
 		}
 	],
