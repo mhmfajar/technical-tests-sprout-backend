@@ -35,7 +35,7 @@ async function runSeed() {
 
 	// Get current date for invoice dates
 	const today = new Date();
-	const formatDate = (date: Date) => date.toISOString().split("T")[0];
+	const formatDate = (date: Date) => date;
 
 	// Create sample sales invoices data
 	const invoicesData = [
